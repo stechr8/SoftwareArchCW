@@ -6,7 +6,7 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		InventoryDatabaseCommands inv = new InventoryDatabaseCommands();
-		inv.UpdateProduct(1, "Ball", 4.99, 37);
+		inv.addProduct(11, "Rake", 14.99, 45);
 
 	}
 

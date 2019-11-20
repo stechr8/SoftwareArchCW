@@ -13,6 +13,46 @@ import objects.Product;
 
 public class InventoryDatabaseCommands {
 	
+	public static void addProduct(int productID, String productName, double price, int stock) {
+		
+		try
+		{
+			// Load the driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// First we need to establish a connection to the database
+			Connection conn = DriverManager
+					.getConnection("jdbc:mysql://localhost/inventory?user=Java&password=Java");
+			// Set up keyboard input
+			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+			
+			// Create a new SQL statement
+			Statement statement = conn.createStatement();
+			
+			// Create the INSERT statement
+			String update = "INSERT INTO InventoryTable (ProductID, ProductName, Price, Stock) " +
+							"VALUES ('" + productID + "', '" + productName + "', '" + price + "', '" + stock + "')";
+			// Execute the statement
+			statement.executeUpdate(update);
+			// Release resources held by the statement
+			statement.close();
+			// Release resources held by the connection.  This also ensures that the INSERT completes
+			conn.close();
+		}
+		catch (ClassNotFoundException cnf)
+		{
+			System.err.println("Could not load driver");
+			System.err.println(cnf.getMessage());
+			System.exit(-1);
+		}
+		catch (SQLException sqe)
+		{
+			System.err.println("Error performing SQL Update");
+			System.err.println(sqe.getMessage());
+			System.exit(-1);
+		}
+		
+	}
+	
 	public static Product getProduct(int productID) {
 		
 		Product product = new Product();
