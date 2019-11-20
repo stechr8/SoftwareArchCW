@@ -6,7 +6,7 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		CustomerDatabaseCommands inv = new CustomerDatabaseCommands();
-		inv.addCustomer(1, "Paul Smith", false);
+		inv.addCustomer(1, "Paul Smith", false, null);
 
 	}
 
