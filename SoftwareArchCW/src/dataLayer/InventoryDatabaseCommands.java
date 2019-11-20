@@ -1,8 +1,5 @@
 package dataLayer;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,9 +8,9 @@ import java.sql.Statement;
 
 import objects.Product;
 
-public class InventoryDatabaseCommands {
+public class InventoryDatabaseCommands implements InventoryDBInterface {
 	
-	public static void addProduct(int productID, String productName, double price, int stock) {
+	public void addProduct(int productID, String productName, double price, int stock) {
 		
 		try
 		{
@@ -22,8 +19,6 @@ public class InventoryDatabaseCommands {
 			// First we need to establish a connection to the database
 			Connection conn = DriverManager
 					.getConnection("jdbc:mysql://localhost/inventory?user=Java&password=Java");
-			// Set up keyboard input
-			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 			
 			// Create a new SQL statement
 			Statement statement = conn.createStatement();
@@ -53,7 +48,7 @@ public class InventoryDatabaseCommands {
 		
 	}
 	
-	public static Product getProduct(int productID) {
+	public Product getProduct(int productID) {
 		
 		Product product = new Product();
 		
@@ -106,7 +101,7 @@ public class InventoryDatabaseCommands {
 
 	}
 	
-	public static void RemoveProduct(int productID) {
+	public void RemoveProduct(int productID) {
 		
 		try
 		{
@@ -144,6 +139,7 @@ public class InventoryDatabaseCommands {
 
 	}
 	
+	@Override
 	public void UpdateProduct(int productID, String productName, double price, int stock) {
 		
 		try {
