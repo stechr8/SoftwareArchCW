@@ -11,7 +11,7 @@ import objects.Customer;
 public class CustomerDatabaseCommands implements CustomerDBInterface {
 	
 	@Override
-	public void addCustomer(int customerID, String customerName, boolean hasLoyaltyCard) {
+	public void addCustomer(int customerID, String customerName, boolean hasLoyaltyCard, String email) {
 		
 		try
 		{
@@ -32,8 +32,8 @@ public class CustomerDatabaseCommands implements CustomerDBInterface {
 			}
 			
 			// Create the INSERT statement
-			String update = "INSERT INTO CustomerTable (CustomerID, CustomerName, LoyaltyCard) " +
-							"VALUES ('" + customerID + "', '" + customerName + "', '" + hasLoyaltyCardInt + "')";
+			String update = "INSERT INTO CustomerTable (CustomerID, CustomerName, LoyaltyCard, Email) " +
+							"VALUES ('" + customerID + "', '" + customerName + "', '" + hasLoyaltyCardInt + "', '" + email + "')";
 			// Execute the statement
 			statement.executeUpdate(update);
 			// Release resources held by the statement
@@ -93,6 +93,8 @@ public class CustomerDatabaseCommands implements CustomerDBInterface {
 			else {
 				customer.setHasLoyaltyCard(true);
 			}
+			
+			customer.setEmail(results.getString("Email"));
 
 			
 			// Release resources held by statement
@@ -158,7 +160,7 @@ public class CustomerDatabaseCommands implements CustomerDBInterface {
 	}
 	
 	@Override
-	public void UpdateCustomer(int customerID, String customerName, boolean hasLoyaltyCard) {
+	public void UpdateCustomer(int customerID, String customerName, boolean hasLoyaltyCard, String email) {
 		
 		try {
 			
@@ -195,6 +197,7 @@ public class CustomerDatabaseCommands implements CustomerDBInterface {
 				results.updateInt("CustomerID", customerID);
 				results.updateString("CustomerName", customerName);
 				results.updateInt("LoyaltyCard", hasLoyaltyCardInt);
+				results.updateString("Email", email);
 				
 				// Update the row in the DB
 				results.updateRow();

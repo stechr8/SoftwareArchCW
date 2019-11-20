@@ -5,6 +5,7 @@ public class Customer {
 	private int customerID;
 	private String customerName;
 	private boolean hasLoyaltyCard;
+	private String email;
 	
 	public int getCustomerID() {
 		return customerID;
@@ -24,6 +25,11 @@ public class Customer {
 	public void setHasLoyaltyCard(boolean hasLoyaltyCard) {
 		this.hasLoyaltyCard = hasLoyaltyCard;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	
 
 }

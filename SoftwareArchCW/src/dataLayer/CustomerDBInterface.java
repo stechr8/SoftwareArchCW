@@ -4,12 +4,12 @@ import objects.Customer;
 
 public interface CustomerDBInterface {
 
-	void addCustomer(int customerID, String customerName, boolean hasLoyaltyCard);
+	void addCustomer(int customerID, String customerName, boolean hasLoyaltyCard, String email);
 
 	Customer getCustomer(int customerID);
 
 	void RemoveCustomer(int customerID);
 
-	void UpdateCustomer(int customerID, String customerName, boolean hasLoyaltyCard);
+	void UpdateCustomer(int customerID, String customerName, boolean hasLoyaltyCard, String email);
 
 }
