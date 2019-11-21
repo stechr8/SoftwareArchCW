@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import businessLayer.InventoryManagement;
 import dataLayer.InventoryDatabaseCommands;
 
 import javax.swing.JTextField;
@@ -102,9 +103,9 @@ public class InvAddFrame extends JFrame {
 				double price = Double.parseDouble(txtPrice.getText());
 				int stock = Integer.parseInt(txtStock.getText());
 				
-				InventoryDatabaseCommands invDB = new InventoryDatabaseCommands();
+				InventoryManagement invManage = new InventoryManagement();
 				
-				invDB.addProduct(id, productName, price, stock);
+				invManage.addProduct(id, productName, price, stock);
 				
 				clear();
 				
