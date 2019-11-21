@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InvManageFrame extends JFrame {
 
@@ -40,6 +42,14 @@ public class InvManageFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnSearchProduct = new JButton("Search Product");
+		btnSearchProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+			}
+		});
+		
 		btnSearchProduct.setBounds(154, 32, 119, 23);
 		contentPane.add(btnSearchProduct);
 		
@@ -52,6 +62,15 @@ public class InvManageFrame extends JFrame {
 		contentPane.add(btnRemoveProduct);
 		
 		JButton btnAddProduct = new JButton("Add Product");
+		btnAddProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InvAddFrame invAddFrame = new InvAddFrame();
+				invAddFrame.setVisible(true);
+				InvManageFrame.this.setVisible(false);
+				
+			}
+		});
 		btnAddProduct.setBounds(154, 66, 119, 23);
 		contentPane.add(btnAddProduct);
 	}
