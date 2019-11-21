@@ -67,7 +67,6 @@ public class InvManageFrame extends JFrame {
 				
 				InvAddFrame invAddFrame = new InvAddFrame();
 				invAddFrame.setVisible(true);
-				InvManageFrame.this.setVisible(false);
 				
 			}
 		});

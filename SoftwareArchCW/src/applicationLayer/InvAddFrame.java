@@ -6,8 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dataLayer.InventoryDatabaseCommands;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -87,15 +91,34 @@ public class InvAddFrame extends JFrame {
 		txtStock.setBounds(171, 114, 86, 20);
 		contentPane.add(txtStock);
 		
-		JButton btnNewButton = new JButton("Add");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				//read in input data
+				int id = Integer.parseInt(txtProductID.getText());
+				String productName = txtProductName.getText();
+				double price = Double.parseDouble(txtPrice.getText());
+				int stock = Integer.parseInt(txtStock.getText());
 				
+				InventoryDatabaseCommands invDB = new InventoryDatabaseCommands();
+				
+				invDB.addProduct(id, productName, price, stock);
+				
+				clear();
+				
+				JOptionPane.showMessageDialog(InvAddFrame.this, productName + " Added");
 				
 			}
 		});
-		btnNewButton.setBounds(168, 145, 89, 23);
-		contentPane.add(btnNewButton);
+		btnAdd.setBounds(168, 145, 89, 23);
+		contentPane.add(btnAdd);
+	}
+	
+	public void clear() {
+		txtProductID.setText("");
+		txtProductName.setText("");
+		txtPrice.setText("");
+		txtStock.setText("");
 	}
 }
