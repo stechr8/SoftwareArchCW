@@ -23,6 +23,7 @@ public class InvAddFrame extends JFrame {
 	private JTextField txtProductName;
 	private JTextField txtPrice;
 	private JTextField txtStock;
+	private JButton btnBack;
 
 	/**
 	 * Launch the application.
@@ -113,6 +114,19 @@ public class InvAddFrame extends JFrame {
 		});
 		btnAdd.setBounds(168, 145, 89, 23);
 		contentPane.add(btnAdd);
+		
+		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				InvManageFrame invManageFrame = new InvManageFrame();
+				invManageFrame.setVisible(true);
+				InvAddFrame.this.setVisible(false);
+				
+			}
+		});
+		btnBack.setBounds(10, 227, 89, 23);
+		contentPane.add(btnBack);
 	}
 	
 	public void clear() {
