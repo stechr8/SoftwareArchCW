@@ -1,18 +1,29 @@
 package applicationLayer;
 
 import java.awt.BorderLayout;
+import java.awt.Dialog;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
+
+import businessLayer.InventoryManagement;
+import objects.Product;
+
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class InvManageFrame extends JFrame {
 
 	private JPanel contentPane;
+	static InventoryManagement invManage;
 
 	/**
 	 * Launch the application.
@@ -44,22 +55,15 @@ public class InvManageFrame extends JFrame {
 		JButton btnSearchProduct = new JButton("Search Product");
 		btnSearchProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+								
+				InvEditFrame invEditFrame = new InvEditFrame();
+				invEditFrame.setVisible(true);
 				
 			}
 		});
 		
 		btnSearchProduct.setBounds(154, 32, 119, 23);
 		contentPane.add(btnSearchProduct);
-		
-		JButton btnUpdateProduct = new JButton("Update Product");
-		btnUpdateProduct.setBounds(154, 134, 119, 23);
-		contentPane.add(btnUpdateProduct);
-		
-		JButton btnRemoveProduct = new JButton("Remove Product");
-		btnRemoveProduct.setBounds(154, 100, 119, 23);
-		contentPane.add(btnRemoveProduct);
 		
 		JButton btnAddProduct = new JButton("Add Product");
 		btnAddProduct.addActionListener(new ActionListener() {

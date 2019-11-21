@@ -1,6 +1,7 @@
 package businessLayer;
 
 import dataLayer.InventoryDatabaseCommands;
+import objects.Product;
 
 public class InventoryManagement {
 	
@@ -9,6 +10,16 @@ public class InventoryManagement {
 	public void addProduct(int productID, String productName, double price, int stock) {
 		
 		invDB.addProduct(productID, productName, price, stock);
+		
+	}
+	
+	public Product getProduct(int productID) {
+		
+		Product product = invDB.getProduct(productID);
+		
+		System.out.println();
+		
+		return product;
 		
 	}
 
