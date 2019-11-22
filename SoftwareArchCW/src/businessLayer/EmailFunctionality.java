@@ -6,34 +6,59 @@ import javax.mail.internet.*;
 
 public class EmailFunctionality  
 {  
-	String recipient = "40281448@live.napier.ac.uk";
-	String sender = "stechr@hotmail.co.uk"; 
+	String sender = "noreply@destore.co.uk"; 
 	String host = "localhost";
-	
-	public void sendEmail(int id, String name, int stock) {
-		
+
+	public void sendStockEmail(int id, String name, int stock) {
+
 		//Get the session object  
-				Properties properties = System.getProperties();  
-				properties.setProperty("mail.smtp.host", host);  
-				Session session = Session.getInstance(properties);  
+		Properties properties = System.getProperties();  
+		properties.setProperty("mail.smtp.host", host);  
+		Session session = Session.getInstance(properties);  
 
-				//compose the message  
-				try{  
+		//compose the message  
+		try{  
+			String recipient = "manager@destore.co.uk";
 
-					MimeMessage message = new MimeMessage(session);  
-					message.setFrom(new InternetAddress(sender));  
-					message.addRecipient(Message.RecipientType.TO,new InternetAddress(recipient));  
-					message.setSubject("Stock Alert");  
-					message.setText("The following product has reached a stock level of " + stock + "."
-							+ "Product ID: " + id + ", Product Name: " + name + "");  
+			MimeMessage message = new MimeMessage(session);  
+			message.setFrom(new InternetAddress(sender));  
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(recipient));  
+			message.setSubject("Stock Alert");  
+			message.setText("The following product has reached a stock level of " + stock + "."
+					+ "Product ID: " + id + ", Product Name: " + name + "");  
 
-					// Send message  
-					Transport.send(message);  
-					System.out.println("message sent successfully....");  
+			// Send message  
+			Transport.send(message);   
 
-				}catch (MessagingException mex) {
-					mex.printStackTrace();
-				}  
-		
+		}catch (MessagingException mex) {
+			mex.printStackTrace();
+		}  
+
 	}
+
+	public void sendLoyaltyEmail(String name, String email) {
+
+		//Get the session object  
+		Properties properties = System.getProperties();  
+		properties.setProperty("mail.smtp.host", host);  
+		Session session = Session.getInstance(properties);  
+
+		//compose the message  
+		try{  
+			String recipient = email;
+
+			MimeMessage message = new MimeMessage(session);  
+			message.setFrom(new InternetAddress(sender));  
+			message.addRecipient(Message.RecipientType.TO,new InternetAddress(recipient));  
+			message.setSubject("A personal offer for you!");  
+			message.setText("Hi " + name + "! A new is available for you for your continued loyalty!");  
+
+			// Send message  
+			Transport.send(message);    
+
+		}catch (MessagingException mex) {
+			mex.printStackTrace();
+		}  
+	}
+
 }  

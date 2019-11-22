@@ -90,7 +90,7 @@ public class InventoryManagement {
 		
 		if(product.getStockLevel() <= 5) {
 			EmailFunctionality emFunc = new EmailFunctionality();
-			emFunc.sendEmail(product.getProductID(), product.getProductName(), product.getStockLevel());
+			emFunc.sendStockEmail(product.getProductID(), product.getProductName(), product.getStockLevel());
 		}
 		
 	}
