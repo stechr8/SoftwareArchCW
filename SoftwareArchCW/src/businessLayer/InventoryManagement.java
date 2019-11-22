@@ -7,7 +7,7 @@ public class InventoryManagement {
 
 	static InventoryDatabaseCommands invDB = new InventoryDatabaseCommands();
 
-	public boolean addProduct(int productID, String productName, double price, int stock) {
+	public boolean addProduct(int productID, String productName, double price, int stock, boolean threeForTwo, boolean bogof, boolean freeDel) {
 
 		Product product = getProduct(productID);
 
@@ -19,7 +19,7 @@ public class InventoryManagement {
 		}else {
 
 			//attempt add
-			invDB.addProduct(productID, productName, price, stock);
+			invDB.addProduct(productID, productName, price, stock, threeForTwo, bogof, freeDel);
 
 			//try to retrieve product to test add success
 			product = getProduct(productID);
@@ -47,11 +47,11 @@ public class InventoryManagement {
 
 	}
 
-	public void UpdateProduct(int productID, String productName, double price, int stock) {
+	public void UpdateProduct(int productID, String productName, double price, int stock, boolean threeForTwo, boolean bogof, boolean freeDel) {
 
-		invDB.UpdateProduct(productID, productName, price, stock);
+		invDB.UpdateProduct(productID, productName, price, stock, threeForTwo, bogof, freeDel);
 		
-		Product product = new Product(productID, productName, price, stock);
+		Product product = new Product(productID, productName, price, stock, threeForTwo, bogof, freeDel);
 		
 		stockCheck(product);
 

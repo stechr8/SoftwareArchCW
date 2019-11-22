@@ -8,9 +8,9 @@ import java.sql.Statement;
 
 import objects.Product;
 
-public class InventoryDatabaseCommands implements InventoryDBInterface {
+public class InventoryDatabaseCommands {
 	
-	public void addProduct(int productID, String productName, double price, int stock) {
+	public void addProduct(int productID, String productName, double price, int stock, boolean threeForTwo, boolean bogof, boolean freeDel) {
 		
 		try
 		{
@@ -23,9 +23,25 @@ public class InventoryDatabaseCommands implements InventoryDBInterface {
 			// Create a new SQL statement
 			Statement statement = conn.createStatement();
 			
+			int threeForTwoInt = 0;
+			int bogofInt = 0;
+			int freeDelInt = 0;
+			
+			//change boolean values to integers
+			if(threeForTwo) {
+				threeForTwoInt++;
+			}
+			if(bogof) {
+				bogofInt++;
+			}
+			if(freeDel) {
+				freeDelInt++;
+			}
+			
 			// Create the INSERT statement
-			String update = "INSERT INTO InventoryTable (ProductID, ProductName, Price, Stock) " +
-							"VALUES ('" + productID + "', '" + productName + "', '" + price + "', '" + stock + "')";
+			String update = "INSERT INTO InventoryTable (ProductID, ProductName, Price, Stock, ThreeForTwo, Bogof, FreeDel) " +
+							"VALUES ('" + productID + "', '" + productName + "', '" + price + "', '" + stock + "', '"
+							+ threeForTwoInt + "', '" + bogofInt + "', '" + freeDelInt + "')";
 			// Execute the statement
 			statement.executeUpdate(update);
 			// Release resources held by the statement
@@ -77,6 +93,9 @@ public class InventoryDatabaseCommands implements InventoryDBInterface {
 			product.setProductName(results.getString("ProductName"));
 			product.setPrice(results.getDouble("Price"));
 			product.setStockLevel(results.getInt("Stock"));
+			product.setThreeForTwo(results.getBoolean("ThreeForTwo"));
+			product.setBogof(results.getBoolean("Bogof"));
+			product.setFreeDel(results.getBoolean("FreeDel"));
 			
 			// Release resources held by statement
 			statement.close();
@@ -142,8 +161,7 @@ public class InventoryDatabaseCommands implements InventoryDBInterface {
 
 	}
 	
-	@Override
-	public void UpdateProduct(int productID, String productName, double price, int stock) {
+	public void UpdateProduct(int productID, String productName, double price, int stock, boolean threeForTwo, boolean bogof, boolean freeDel) {
 		
 		try {
 			
@@ -174,6 +192,24 @@ public class InventoryDatabaseCommands implements InventoryDBInterface {
 				results.updateString("ProductName", productName);
 				results.updateDouble("Price", price);
 				results.updateInt("Stock", stock);
+				
+				int threeForTwoInt = 0;
+				int bogofInt = 0;
+				int freeDelInt = 0;
+				
+				if(threeForTwo) {
+					threeForTwoInt++;
+				}
+				if(bogof) {
+					bogofInt++;
+				}
+				if(freeDel) {
+					freeDelInt++;
+				}
+				
+				results.updateInt("ThreeForTwo", threeForTwoInt);
+				results.updateInt("Bogof", bogofInt);
+				results.updateInt("FreeDel", freeDelInt);
 				
 				// Update the row in the DB
 				results.updateRow();

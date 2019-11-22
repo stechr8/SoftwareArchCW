@@ -8,9 +8,8 @@ import java.sql.Statement;
 
 import objects.Customer;
 
-public class CustomerDatabaseCommands implements CustomerDBInterface {
+public class CustomerDatabaseCommands {
 	
-	@Override
 	public void addCustomer(int customerID, String customerName, boolean hasLoyaltyCard, String email) {
 		
 		try
@@ -56,7 +55,6 @@ public class CustomerDatabaseCommands implements CustomerDBInterface {
 		
 	}
 	
-	@Override
 	public Customer getCustomer(int customerID) {
 		
 		Customer customer = new Customer();
@@ -120,7 +118,6 @@ public class CustomerDatabaseCommands implements CustomerDBInterface {
 
 	}
 	
-	@Override
 	public void RemoveCustomer(int customerID) {
 		
 		try
@@ -159,7 +156,6 @@ public class CustomerDatabaseCommands implements CustomerDBInterface {
 
 	}
 	
-	@Override
 	public void UpdateCustomer(int customerID, String customerName, boolean hasLoyaltyCard, String email) {
 		
 		try {

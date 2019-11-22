@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 public class InvAddFrame extends JFrame {
 	
@@ -49,7 +50,7 @@ public class InvAddFrame extends JFrame {
 	 */
 	public InvAddFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 393);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -96,6 +97,19 @@ public class InvAddFrame extends JFrame {
 		contentPane.add(txtStock);
 		
 
+		JCheckBox chckbx3for2 = new JCheckBox("3 for 2");
+		chckbx3for2.setBounds(24, 192, 97, 23);
+		contentPane.add(chckbx3for2);
+		
+		JCheckBox chckbxBogof = new JCheckBox("BOGOF");
+		chckbxBogof.setBounds(160, 192, 97, 23);
+		contentPane.add(chckbxBogof);
+		
+		JCheckBox chckbxFreeDelivery = new JCheckBox("Free Delivery");
+		chckbxFreeDelivery.setBounds(293, 192, 97, 23);
+		contentPane.add(chckbxFreeDelivery);
+		
+
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -115,7 +129,8 @@ public class InvAddFrame extends JFrame {
 				
 				try {
 
-					if(txtProductName.getText().equals("") || txtProductID.getText().equals("") || txtPrice.getText().equals("") || txtStock.getText().equals("")) {
+					if(txtProductName.getText().equals("") || txtProductID.getText().equals("") 
+							|| txtPrice.getText().equals("") || txtStock.getText().equals("")) {
 						throw new Exception("Please fill out all fields");
 					}
 
@@ -123,8 +138,13 @@ public class InvAddFrame extends JFrame {
 					String name = txtProductName.getText();
 					double price = Double.parseDouble(txtPrice.getText());
 					int stock = Integer.parseInt(txtStock.getText());
+					
+					boolean threeForTwo = chckbx3for2.isSelected();
+					boolean bogof = chckbxBogof.isSelected();
+					boolean freeDel = chckbxFreeDelivery.isSelected();
+					
 
-					boolean added = invManage.addProduct(id, name, price, stock);
+					boolean added = invManage.addProduct(id, name, price, stock, threeForTwo, bogof, freeDel);
 					
 					if(added) {
 						
@@ -160,9 +180,8 @@ public class InvAddFrame extends JFrame {
 				
 			}
 		});
-		btnBack.setBounds(10, 227, 89, 23);
+		btnBack.setBounds(10, 320, 89, 23);
 		contentPane.add(btnBack);
 		
 	}
-
 }

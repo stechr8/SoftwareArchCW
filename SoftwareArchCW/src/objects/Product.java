@@ -4,43 +4,72 @@ package objects;
 
 public class Product {
 	
-	private int ProductID;
-	private String ProductName;
-	private double Price;
-	private int StockLevel;
+	private int productID;
+	private String productName;
+	private double price;
+	private int stockLevel;
+	private boolean threeForTwo;
+	private boolean bogof;
+	private boolean freeDel;
 	
 	public Product() {}
 	
-	public Product(int productID, String productName, double price, int stock) {
-		this.ProductID = productID;
-		this.ProductName = productName;
-		this.Price = price;
-		this.StockLevel = stock;
+	public Product(int productID, String productName, double price, int stock, boolean threeForTwo, boolean bogof, boolean freeDel) {
+		this.productID = productID;
+		this.productName = productName;
+		this.price = price;
+		this.stockLevel = stock;
+		this.threeForTwo = threeForTwo;
+		this.bogof = bogof;
+		this.freeDel = freeDel;
 	}
 	
 	public int getProductID() {
-		return ProductID;
+		return productID;
 	}
 	public void setProductID(int productID) {
-		ProductID = productID;
+		this.productID = productID;
 	}
 	public String getProductName() {
-		return ProductName;
+		return productName;
 	}
 	public void setProductName(String productName) {
-		ProductName = productName;
+		this.productName = productName;
 	}
 	public double getPrice() {
-		return Price;
+		return price;
 	}
 	public void setPrice(double price) {
-		Price = price;
+		this.price = price;
 	}
 	public int getStockLevel() {
-		return StockLevel;
+		return stockLevel;
 	}
 	public void setStockLevel(int stockLevel) {
-		StockLevel = stockLevel;
+		this.stockLevel = stockLevel;
+	}
+	public boolean isThreeForTwo() {
+		return threeForTwo;
+	}
+
+	public void setThreeForTwo(boolean threeForTwo) {
+		this.threeForTwo = threeForTwo;
+	}
+
+	public boolean isBogof() {
+		return bogof;
+	}
+
+	public void setBogof(boolean bogof) {
+		this.bogof = bogof;
+	}
+
+	public boolean isFreeDel() {
+		return freeDel;
+	}
+
+	public void setFreeDel(boolean freeDel) {
+		this.freeDel = freeDel;
 	}
 	
 

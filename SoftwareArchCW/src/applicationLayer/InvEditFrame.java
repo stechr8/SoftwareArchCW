@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 public class InvEditFrame extends JFrame {
 
@@ -54,11 +55,24 @@ public class InvEditFrame extends JFrame {
 	 */
 	public InvEditFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 386);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+
+		JCheckBox chckbx3f2 = new JCheckBox("3 for 2");
+		chckbx3f2.setBounds(37, 221, 97, 23);
+		contentPane.add(chckbx3f2);
+		
+		JCheckBox chckbxBogof = new JCheckBox("BOGOF");
+		chckbxBogof.setBounds(130, 221, 97, 23);
+		contentPane.add(chckbxBogof);
+		
+		JCheckBox chckbxFreeDelivery = new JCheckBox("Free Delivery");
+		chckbxFreeDelivery.setBounds(229, 221, 97, 23);
+		contentPane.add(chckbxFreeDelivery);
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -68,6 +82,9 @@ public class InvEditFrame extends JFrame {
 				txtName.setText("");
 				txtPrice.setText("");
 				txtStock.setText("");
+				chckbx3f2.setSelected(false);
+				chckbxBogof.setSelected(false);
+				chckbxFreeDelivery.setSelected(false);
 
 			}
 		});
@@ -88,8 +105,12 @@ public class InvEditFrame extends JFrame {
 					String name = txtName.getText();
 					double price = Double.parseDouble(txtPrice.getText());
 					int stock = Integer.parseInt(txtStock.getText());
+					
+					boolean threeForTwo = chckbx3f2.isSelected();
+					boolean bogof = chckbxBogof.isSelected();
+					boolean freeDel = chckbxFreeDelivery.isSelected();
 
-					invManage.UpdateProduct(id, name, price, stock);
+					invManage.UpdateProduct(id, name, price, stock, threeForTwo, bogof, freeDel);
 
 					btnClear.doClick();
 
@@ -196,6 +217,9 @@ public class InvEditFrame extends JFrame {
 					txtName.setText(product.getProductName());
 					txtPrice.setText(Double.toString(product.getPrice()));
 					txtStock.setText(Integer.toString(product.getStockLevel()));
+					chckbx3f2.setSelected(product.isThreeForTwo());
+					chckbxBogof.setSelected(product.isBogof());
+					chckbxFreeDelivery.setSelected(product.isFreeDel());
 
 				}catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(InvEditFrame.this, "Please enter an integer value into the ID box");
@@ -217,7 +241,7 @@ public class InvEditFrame extends JFrame {
 				InvEditFrame.this.setVisible(false);
 			}
 		});
-		btnBack.setBounds(10, 227, 89, 23);
+		btnBack.setBounds(10, 313, 89, 23);
 		contentPane.add(btnBack);
 
 	}
