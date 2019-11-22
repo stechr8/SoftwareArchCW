@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class InvAddFrame extends JFrame {
+	
+	InventoryManagement invManage = new InventoryManagement();
 
 	private JPanel contentPane;
 	private JTextField txtProductID;
@@ -93,27 +95,59 @@ public class InvAddFrame extends JFrame {
 		txtStock.setBounds(171, 114, 86, 20);
 		contentPane.add(txtStock);
 		
+
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtProductID.setText("");
+				txtProductName.setText("");
+				txtPrice.setText("");
+				txtStock.setText("");
+			}
+		});
+		btnClear.setBounds(171, 145, 89, 23);
+		contentPane.add(btnClear);
+		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//read in input data
-				int id = Integer.parseInt(txtProductID.getText());
-				String productName = txtProductName.getText();
-				double price = Double.parseDouble(txtPrice.getText());
-				int stock = Integer.parseInt(txtStock.getText());
-				
-				InventoryManagement invManage = new InventoryManagement();
-				
-				invManage.addProduct(id, productName, price, stock);
-				
-				clear();
-				
-				JOptionPane.showMessageDialog(InvAddFrame.this, productName + " Added");
+				try {
+
+					if(txtProductName.getText().equals("") || txtProductID.getText().equals("") || txtPrice.getText().equals("") || txtStock.getText().equals("")) {
+						throw new Exception("Please fill out all fields");
+					}
+
+					int id = Integer.parseInt(txtProductID.getText());
+					String name = txtProductName.getText();
+					double price = Double.parseDouble(txtPrice.getText());
+					int stock = Integer.parseInt(txtStock.getText());
+
+					boolean added = invManage.addProduct(id, name, price, stock);
+					
+					if(added) {
+						
+						btnClear.doClick();
+						JOptionPane.showMessageDialog(InvAddFrame.this, name + " added successfully");
+					}
+					else {
+						
+						throw new Exception("Product with this ID already exists or Product has failed to be added");
+						
+					}
+
+				}catch(NumberFormatException ex) {
+					JOptionPane.showMessageDialog(InvAddFrame.this, "Please enter valid details");
+				}
+				catch(Exception ex) {
+					JOptionPane.showMessageDialog(InvAddFrame.this, ex.getMessage());
+				}
 				
 			}
 		});
-		btnAdd.setBounds(168, 145, 89, 23);
+		
+		btnAdd.setBounds(335, 23, 89, 23);
 		contentPane.add(btnAdd);
 		
 		btnBack = new JButton("Back");
@@ -128,12 +162,7 @@ public class InvAddFrame extends JFrame {
 		});
 		btnBack.setBounds(10, 227, 89, 23);
 		contentPane.add(btnBack);
+		
 	}
-	
-	public void clear() {
-		txtProductID.setText("");
-		txtProductName.setText("");
-		txtPrice.setText("");
-		txtStock.setText("");
-	}
+
 }
