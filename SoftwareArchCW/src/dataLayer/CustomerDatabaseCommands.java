@@ -135,6 +135,8 @@ public class CustomerDatabaseCommands {
 			// Create query to get the customer from the database matching the customer name
 			String query = "DELETE * FROM CustomerTable WHERE CustomerID = '" + customerID + "'";
 			
+			statement.executeUpdate(query);
+			
 			// Release resources held by statement
 			statement.close();
 			// Release resources held by DB connection
