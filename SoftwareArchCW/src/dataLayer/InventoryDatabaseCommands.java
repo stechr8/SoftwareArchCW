@@ -116,7 +116,10 @@ public class InventoryDatabaseCommands implements InventoryDBInterface {
 			Statement statement = conn.createStatement();
 			
 			// Create query to get the product from the database matching the product name
-			String query = "DELETE * FROM InventoryTable WHERE ProductID = '" + productID + "'";
+			String query = "DELETE FROM InventoryTable WHERE ProductID = '" + productID + "'";
+			
+			//execute query
+			statement.executeUpdate(query);
 			
 			// Release resources held by statement
 			statement.close();

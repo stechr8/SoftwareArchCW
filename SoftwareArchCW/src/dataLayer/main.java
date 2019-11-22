@@ -6,7 +6,7 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		InventoryDatabaseCommands inv = new InventoryDatabaseCommands();
-		System.out.println(inv.getProduct(1).getProductName());
+		inv.RemoveProduct(13);
 
 	}
 
