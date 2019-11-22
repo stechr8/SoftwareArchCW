@@ -52,6 +52,18 @@ public class InvManageFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				HomeFrame homeFrame = new HomeFrame();
+				homeFrame.setVisible(true);
+				InvManageFrame.this.setVisible(false);
+			}
+		});
+		btnBack.setBounds(10, 227, 89, 23);
+		contentPane.add(btnBack);
+		
 		JButton btnSearchProduct = new JButton("Search Product");
 		btnSearchProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

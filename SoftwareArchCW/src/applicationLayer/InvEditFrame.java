@@ -207,6 +207,18 @@ public class InvEditFrame extends JFrame {
 		});
 		btnSearch.setBounds(291, 59, 119, 23);
 		contentPane.add(btnSearch);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InvManageFrame invFrame = new InvManageFrame();
+				invFrame.setVisible(true);
+				InvEditFrame.this.setVisible(false);
+			}
+		});
+		btnBack.setBounds(10, 227, 89, 23);
+		contentPane.add(btnBack);
 
 	}
 }
