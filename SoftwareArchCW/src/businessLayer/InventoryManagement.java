@@ -20,5 +20,11 @@ public class InventoryManagement {
 		return product;
 		
 	}
+	
+	public void UpdateProduct(int productID, String productName, double price, int stock) {
+		
+		invDB.UpdateProduct(productID, productName, price, stock);
+		
+	}
 
 }

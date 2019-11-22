@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 public class InvEditFrame extends JFrame {
@@ -58,7 +60,52 @@ public class InvEditFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtID.setText("");
+				txtName.setText("");
+				txtPrice.setText("");
+				txtStock.setText("");
+				
+			}
+		});
+		btnClear.setBounds(130, 171, 89, 23);
+		contentPane.add(btnClear);
+		
 		JButton btnUpdate = new JButton("Update Product");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					if(txtName.getText().equals("") || txtPrice.getText().equals("") || txtStock.getText().equals("")) {
+						throw new Exception("Please fill out all fields");
+					}
+					
+					int id = Integer.parseInt(txtID.getText());
+					String name = txtName.getText();
+					double price = Double.parseDouble(txtPrice.getText());
+					int stock = Integer.parseInt(txtStock.getText());
+					
+					invManage.UpdateProduct(id, name, price, stock);
+					
+					btnClear.doClick();
+					
+					JOptionPane.showMessageDialog(InvEditFrame.this, name + " Updated successfully");
+					
+					
+				}catch(NumberFormatException ex) {
+					JOptionPane.showMessageDialog(InvEditFrame.this, "Please enter valid details");
+				}
+				catch(Exception ex) {
+					JOptionPane.showMessageDialog(InvEditFrame.this, ex.getMessage());
+				}
+				
+				
+			}
+		});
 		btnUpdate.setBounds(291, 93, 119, 23);
 		contentPane.add(btnUpdate);
 		
@@ -133,20 +180,6 @@ public class InvEditFrame extends JFrame {
 		});
 		btnSearch.setBounds(291, 59, 119, 23);
 		contentPane.add(btnSearch);
-		
-		JButton btnClear = new JButton("Clear");
-		btnClear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				txtID.setText("");
-				txtName.setText("");
-				txtPrice.setText("");
-				txtStock.setText("");
-				
-			}
-		});
-		btnClear.setBounds(130, 171, 89, 23);
-		contentPane.add(btnClear);
 		
 	}
 }
