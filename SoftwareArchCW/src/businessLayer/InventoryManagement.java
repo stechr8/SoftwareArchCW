@@ -26,6 +26,8 @@ public class InventoryManagement {
 
 			//if added return true
 			if(product.getProductName() != null) {
+				
+				stockCheck(product);
 
 				return true;
 			}
@@ -48,6 +50,10 @@ public class InventoryManagement {
 	public void UpdateProduct(int productID, String productName, double price, int stock) {
 
 		invDB.UpdateProduct(productID, productName, price, stock);
+		
+		Product product = new Product(productID, productName, price, stock);
+		
+		stockCheck(product);
 
 	}
 
@@ -78,9 +84,16 @@ public class InventoryManagement {
 			return false;
 
 		}
-
-
-
 	}
+	
+	private void stockCheck(Product product) {
+		
+		if(product.getStockLevel() <= 5) {
+			EmailFunctionality emFunc = new EmailFunctionality();
+			emFunc.sendEmail(product.getProductID(), product.getProductName(), product.getStockLevel());
+		}
+		
+	}
+
 
 }

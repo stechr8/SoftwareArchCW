@@ -9,6 +9,15 @@ public class Product {
 	private double Price;
 	private int StockLevel;
 	
+	public Product() {}
+	
+	public Product(int productID, String productName, double price, int stock) {
+		this.ProductID = productID;
+		this.ProductName = productName;
+		this.Price = price;
+		this.StockLevel = stock;
+	}
+	
 	public int getProductID() {
 		return ProductID;
 	}
