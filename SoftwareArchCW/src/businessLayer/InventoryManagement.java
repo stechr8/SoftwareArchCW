@@ -17,8 +17,6 @@ public class InventoryManagement {
 		
 		Product product = invDB.getProduct(productID);
 		
-		System.out.println();
-		
 		return product;
 		
 	}

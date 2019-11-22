@@ -88,13 +88,13 @@ public class InventoryDatabaseCommands implements InventoryDBInterface {
 		{
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			System.exit(-1);
+			//System.exit(-1);
 		}
 		catch (SQLException sqe)
 		{
 			System.out.println("Error performing SQL Query");
 			System.out.println(sqe.getMessage());
-			System.exit(-1);
+			//System.exit(-1);
 		}
 		
 		return product;

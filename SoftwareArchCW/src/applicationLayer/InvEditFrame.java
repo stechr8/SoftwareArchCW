@@ -1,11 +1,14 @@
 package applicationLayer;
 
 import java.awt.BorderLayout;
+import java.awt.Dialog;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 import businessLayer.InventoryManagement;
 import objects.Product;
@@ -13,6 +16,8 @@ import objects.Product;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -110,18 +115,38 @@ public class InvEditFrame extends JFrame {
 				    
 				    Product product = invManage.getProduct(id);
 				    
+				    if(product.getProductName().equals("")) {
+				    	throw new Exception();
+				    }
+				    
 				    txtName.setText(product.getProductName());
 				    txtPrice.setText(Double.toString(product.getPrice()));
 				    txtStock.setText(Integer.toString(product.getStockLevel()));
 				    
 				}catch (NumberFormatException ex) {
-				    System.out.println("Not an int");
+				    JOptionPane.showMessageDialog(InvEditFrame.this, "Please enter an integer value into the ID box");
+				}catch(Exception ex) {
+					JOptionPane.showMessageDialog(InvEditFrame.this, "No product with this ID");
 				}
 				
 			}
 		});
 		btnSearch.setBounds(291, 59, 119, 23);
 		contentPane.add(btnSearch);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtID.setText("");
+				txtName.setText("");
+				txtPrice.setText("");
+				txtStock.setText("");
+				
+			}
+		});
+		btnClear.setBounds(130, 171, 89, 23);
+		contentPane.add(btnClear);
 		
 	}
 }
