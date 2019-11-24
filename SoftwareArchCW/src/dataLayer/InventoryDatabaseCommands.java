@@ -53,13 +53,13 @@ public class InventoryDatabaseCommands {
 		{
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			System.exit(-1);
+			
 		}
 		catch (SQLException sqe)
 		{
 			System.err.println("Error performing SQL Update");
 			System.err.println(sqe.getMessage());
-			System.exit(-1);
+			
 		}
 		
 	}
@@ -107,13 +107,11 @@ public class InventoryDatabaseCommands {
 		{
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			//System.exit(-1);
 		}
 		catch (SQLException sqe)
 		{
 			System.out.println("Error performing SQL Query");
 			System.out.println(sqe.getMessage());
-			//System.exit(-1);
 		}
 		
 		return product;
@@ -150,18 +148,19 @@ public class InventoryDatabaseCommands {
 		{
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			System.exit(-1);
+			
 		}
 		catch (SQLException sqe)
 		{
 			System.out.println("Error performing SQL Query");
 			System.out.println(sqe.getMessage());
-			System.exit(-1);
+			
 		}
 
 	}
 	
-	public void UpdateProduct(int productID, String productName, double price, int stock, boolean threeForTwo, boolean bogof, boolean freeDel) {
+	public void UpdateProduct(int productID, String productName, double price, int stock, 
+			boolean threeForTwo, boolean bogof, boolean freeDel) throws Exception {
 		
 		try {
 			
@@ -217,6 +216,7 @@ public class InventoryDatabaseCommands {
 			} else {
 				// No matching records. Display message
 				System.out.println("Record does not exist");
+				throw new Exception("No product with that ID");
 			}
 			// Free statement resources
 			statement.close();
@@ -226,11 +226,11 @@ public class InventoryDatabaseCommands {
 		} catch (ClassNotFoundException cnf) {
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			System.exit(-1);
+			
 		} catch (SQLException sqe) {
 			System.err.println("Error in SQL Update");
 			System.err.println(sqe.getMessage());
-			System.exit(-1);
+			
 		}
 		
 	}

@@ -1,13 +1,21 @@
 package businessLayer;
 
+import javax.swing.JOptionPane;
+
+import org.slf4j.LoggerFactory;
+
+import applicationLayer.InvAddFrame;
 import dataLayer.InventoryDatabaseCommands;
 import objects.Product;
 
 public class InventoryManagement {
+	
+	private static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(InventoryManagement.class);
 
 	static InventoryDatabaseCommands invDB = new InventoryDatabaseCommands();
 
-	public boolean addProduct(int productID, String productName, double price, int stock, boolean threeForTwo, boolean bogof, boolean freeDel) {
+	public boolean addProduct(int productID, String productName, double price, int stock,
+			boolean threeForTwo, boolean bogof, boolean freeDel, InvAddFrame frame) throws Exception {
 
 		Product product = getProduct(productID);
 
@@ -26,8 +34,13 @@ public class InventoryManagement {
 
 			//if added return true
 			if(product.getProductName() != null) {
-				
-				stockCheck(product);
+
+				try {
+					stockCheck(product);
+				}
+				catch(Exception ex) {
+					JOptionPane.showMessageDialog(frame, ex.getMessage());
+				}
 
 				return true;
 			}
@@ -47,13 +60,18 @@ public class InventoryManagement {
 
 	}
 
-	public void UpdateProduct(int productID, String productName, double price, int stock, boolean threeForTwo, boolean bogof, boolean freeDel) {
+	public void UpdateProduct(int productID, String productName, double price, int stock, 
+			boolean threeForTwo, boolean bogof, boolean freeDel) throws Exception {
+			
+			invDB.UpdateProduct(productID, productName, price, stock, threeForTwo, bogof, freeDel);
 
-		invDB.UpdateProduct(productID, productName, price, stock, threeForTwo, bogof, freeDel);
-		
-		Product product = new Product(productID, productName, price, stock, threeForTwo, bogof, freeDel);
-		
-		stockCheck(product);
+			Product product = new Product(productID, productName, price, stock, threeForTwo, bogof, freeDel);
+
+			try {
+				stockCheck(product);
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 
 	}
 
@@ -85,14 +103,22 @@ public class InventoryManagement {
 
 		}
 	}
-	
-	private void stockCheck(Product product) {
+
+	private void stockCheck(Product product) throws Exception {
 		
-		if(product.getStockLevel() <= 5) {
+		try {
+			if(product.getStockLevel() <= 5) {
 			EmailFunctionality emFunc = new EmailFunctionality();
 			emFunc.sendStockEmail(product.getProductID(), product.getProductName(), product.getStockLevel());
 		}
+		}
+		catch(Exception ex) {
+			LOGGER.error(ex.getMessage());
+			throw new Exception("An issue occurred in sending a stock alert email");
+		}
+
 		
+
 	}
 
 

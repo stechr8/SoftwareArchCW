@@ -44,13 +44,13 @@ public class CustomerDatabaseCommands {
 		{
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			System.exit(-1);
+			
 		}
 		catch (SQLException sqe)
 		{
 			System.err.println("Error performing SQL Update");
 			System.err.println(sqe.getMessage());
-			System.exit(-1);
+			
 		}
 		
 	}
@@ -105,13 +105,13 @@ public class CustomerDatabaseCommands {
 		{
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			System.exit(-1);
+			
 		}
 		catch (SQLException sqe)
 		{
 			System.out.println("Error performing SQL Query");
 			System.out.println(sqe.getMessage());
-			System.exit(-1);
+			
 		}
 		
 		return customer;
@@ -147,13 +147,13 @@ public class CustomerDatabaseCommands {
 		{
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			System.exit(-1);
+			
 		}
 		catch (SQLException sqe)
 		{
 			System.out.println("Error performing SQL Query");
 			System.out.println(sqe.getMessage());
-			System.exit(-1);
+			
 		}
 
 	}
@@ -212,11 +212,11 @@ public class CustomerDatabaseCommands {
 		} catch (ClassNotFoundException cnf) {
 			System.err.println("Could not load driver");
 			System.err.println(cnf.getMessage());
-			System.exit(-1);
+			
 		} catch (SQLException sqe) {
 			System.err.println("Error in SQL Update");
 			System.err.println(sqe.getMessage());
-			System.exit(-1);
+			
 		}
 		
 	}
