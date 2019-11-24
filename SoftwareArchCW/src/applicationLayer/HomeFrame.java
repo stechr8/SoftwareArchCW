@@ -52,12 +52,21 @@ public class HomeFrame extends JFrame {
 		});
 		contentPane.setLayout(null);
 		
-		btnInvManage.setBounds(10, 11, 135, 23);
+		btnInvManage.setBounds(134, 92, 144, 23);
 		contentPane.add(btnInvManage);
 		
-		JButton btnCustManage = new JButton("Manage Customers");
-		btnCustManage.setBounds(146, 11, 144, 23);
-		contentPane.add(btnCustManage);
+		JButton btnCustControl = new JButton("Customer Controls");
+		btnCustControl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				CustomerSendEmailFrame custFrame = new CustomerSendEmailFrame();
+				custFrame.setVisible(true);
+				HomeFrame.this.setVisible(false);
+				
+			}
+		});
+		btnCustControl.setBounds(134, 146, 144, 23);
+		contentPane.add(btnCustControl);
 	}
 
 }
