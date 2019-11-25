@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import businessLayer.PortalFunctionality;
+
 public class HomeFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -65,8 +67,32 @@ public class HomeFrame extends JFrame {
 				
 			}
 		});
-		btnCustControl.setBounds(134, 146, 144, 23);
+		btnCustControl.setBounds(134, 126, 144, 23);
 		contentPane.add(btnCustControl);
+		
+		JButton btnStoreReports = new JButton("Store Reports");
+		btnStoreReports.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				StoreReportsFrame reportsForm = new StoreReportsFrame();
+				reportsForm.setVisible(true);
+				HomeFrame.this.setVisible(false);
+				
+			}
+		});
+		btnStoreReports.setBounds(134, 160, 144, 23);
+		contentPane.add(btnStoreReports);
+		
+		JButton btnEnablePortal = new JButton("ENABLE Portal");
+		btnEnablePortal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				PortalFunctionality portFunc = new PortalFunctionality();
+				portFunc.OpenPortal();
+				
+			}
+		});
+		btnEnablePortal.setBounds(297, 11, 127, 23);
+		contentPane.add(btnEnablePortal);
 	}
-
 }

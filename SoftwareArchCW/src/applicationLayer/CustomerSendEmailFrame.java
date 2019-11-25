@@ -91,7 +91,7 @@ public class CustomerSendEmailFrame extends JFrame {
 				
 			}
 		});
-		btnSendPromotion.setBounds(317, 227, 107, 23);
+		btnSendPromotion.setBounds(292, 227, 132, 23);
 		contentPane.add(btnSendPromotion);
 		btnSendPromotion.setEnabled(false);
 
@@ -126,6 +126,15 @@ public class CustomerSendEmailFrame extends JFrame {
 		contentPane.add(btnSearchId);
 
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				HomeFrame hFrame = new HomeFrame();
+				hFrame.setVisible(true);
+				CustomerSendEmailFrame.this.setVisible(false);
+				
+			}
+		});
 		btnBack.setBounds(10, 227, 89, 23);
 		contentPane.add(btnBack);
 	}

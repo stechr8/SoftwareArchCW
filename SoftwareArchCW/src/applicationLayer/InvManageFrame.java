@@ -74,7 +74,7 @@ public class InvManageFrame extends JFrame {
 			}
 		});
 		
-		btnSearchProduct.setBounds(154, 32, 119, 23);
+		btnSearchProduct.setBounds(143, 31, 155, 23);
 		contentPane.add(btnSearchProduct);
 		
 		JButton btnAddProduct = new JButton("Add Product");
@@ -86,7 +86,7 @@ public class InvManageFrame extends JFrame {
 				
 			}
 		});
-		btnAddProduct.setBounds(154, 66, 119, 23);
+		btnAddProduct.setBounds(143, 65, 155, 23);
 		contentPane.add(btnAddProduct);
 	}
 }

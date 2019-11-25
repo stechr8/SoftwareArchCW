@@ -71,7 +71,7 @@ public class InvEditFrame extends JFrame {
 		contentPane.add(chckbxBogof);
 		
 		JCheckBox chckbxFreeDelivery = new JCheckBox("Free Delivery");
-		chckbxFreeDelivery.setBounds(229, 221, 97, 23);
+		chckbxFreeDelivery.setBounds(229, 221, 111, 23);
 		contentPane.add(chckbxFreeDelivery);
 
 		JButton btnClear = new JButton("Clear");
@@ -127,7 +127,7 @@ public class InvEditFrame extends JFrame {
 
 			}
 		});
-		btnUpdate.setBounds(291, 93, 119, 23);
+		btnUpdate.setBounds(266, 93, 144, 23);
 		contentPane.add(btnUpdate);
 
 		JButton btnRemove = new JButton("Remove Product");
@@ -158,7 +158,7 @@ public class InvEditFrame extends JFrame {
 
 			}
 		});
-		btnRemove.setBounds(291, 127, 119, 23);
+		btnRemove.setBounds(266, 127, 144, 23);
 		contentPane.add(btnRemove);
 
 		txtID = new JTextField();
@@ -229,7 +229,7 @@ public class InvEditFrame extends JFrame {
 
 			}
 		});
-		btnSearch.setBounds(291, 59, 119, 23);
+		btnSearch.setBounds(266, 59, 144, 23);
 		contentPane.add(btnSearch);
 		
 		JButton btnBack = new JButton("Back");
