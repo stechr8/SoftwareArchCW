@@ -144,7 +144,7 @@ public class InvAddFrame extends JFrame {
 					boolean freeDel = chckbxFreeDelivery.isSelected();
 					
 
-					boolean added = invManage.addProduct(id, name, price, stock, threeForTwo, bogof, freeDel);
+					boolean added = invManage.addProduct(id, name, price, stock, threeForTwo, bogof, freeDel, InvAddFrame.this);
 					
 					if(added) {
 						
