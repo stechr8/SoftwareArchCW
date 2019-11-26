@@ -51,11 +51,11 @@ public class CustomerSendEmailFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblCustomerId = new JLabel("Customer ID:");
-		lblCustomerId.setBounds(43, 73, 71, 14);
+		lblCustomerId.setBounds(28, 73, 86, 14);
 		contentPane.add(lblCustomerId);
 
 		JLabel lblName = new JLabel("Name:");
-		lblName.setBounds(71, 104, 31, 14);
+		lblName.setBounds(53, 104, 49, 14);
 		contentPane.add(lblName);
 
 		JLabel lblShowID = new JLabel("");

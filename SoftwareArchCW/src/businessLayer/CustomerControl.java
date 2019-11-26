@@ -36,7 +36,7 @@ public class CustomerControl {
 			emFunc.sendLoyaltyEmail(name, email);
 		}
 		catch(Exception ex) {
-			throw new Exception("An issue occurred in sending a this email.");
+			throw new Exception("An issue occurred in sending this email.");
 		}
 		
 	}
